@@ -1,0 +1,7 @@
+<h1>Changelog</h1>
+
+{% for entry in object_list %}
+    <h2>{{ entry.version }}</h2>
+    <p>{{ entry.release_date }}</p>
+    <p>{{ entry.description }}</p>
+{% endfor %}

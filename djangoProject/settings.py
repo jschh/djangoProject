@@ -15,6 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR / 'login'
+BASE_DIR / 'vvs'
 BASE_DIR / 'templates'
 
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "login.apps.LoginConfig",
+    "vvs.apps.VvsConfig",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,10 @@ ROOT_URLCONF = "djangoProject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'login/templates']
+        "DIRS": [
+            BASE_DIR / 'login/templates',
+            BASE_DIR / 'vvs/templates'
+        ]
         ,
         "APP_DIRS": True,
         "OPTIONS": {
