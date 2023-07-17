@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .models import Choice, Question
 from django.urls import reverse
 from django.views import generic
+
+
 # Create your views here.
 
 
@@ -45,6 +47,7 @@ def vote(request, question_id):
         selected_choice.save()
 
         return HttpResponseRedirect(reverse("login:results", args=(question.id,)))
+
 
 def landingView(request):
     return render(request, "login/landing.html")

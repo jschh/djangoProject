@@ -21,5 +21,6 @@ from login import views
 urlpatterns = [
     path("", views.landingView, name="landing"),
     path("login/", include("login.urls")),
+    path("vvs/", include("vvs.urls")),
     path("admin/", admin.site.urls),
 ]
