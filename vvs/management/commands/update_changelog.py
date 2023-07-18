@@ -4,8 +4,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 
-# the following code is based on the following tutorial:
-# https://www.youtube.com/watch?v=UyQn0BhVqNU
+
 class Command(BaseCommand):
     help = "Updates the changelog"
 

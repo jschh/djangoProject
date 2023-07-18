@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spacebar Timer</title>
+    <style>
+        #times {
+            margin-right: 50px;
+        }
+        #container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h1>Press spacebar to start/stop the timer</h1>
+    <div id="container">
+        <table id="times">
+            <tr>
+                <th>Times</th>
+            </tr>
+        </table>
+        <h2 id="time">0.00</h2>
+    </div>
+
+    <script>
+        let timer = 0;
+        let intervalId = null;
+        let startTimestamp = null;
+
+        function updateTimer() {
+            timer = (Date.now() - startTimestamp) / 1000;
+            document.getElementById('time').textContent = timer.toFixed(2);
+        }
+
+        function addTimeToTable(time) {
+            const table = document.getElementById('times');
+            const row = table.insertRow();
+            const cell = row.insertCell();
+            cell.textContent = time.toFixed(2);
+        }
+
+        window.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+                event.preventDefault();
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                    addTimeToTable(timer);
+                    timer = 0;
+                    document.getElementById('time').textContent = timer.toFixed(2);
+                } else {
+                    startTimestamp = Date.now();
+                    intervalId = setInterval(updateTimer, 10);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

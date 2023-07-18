@@ -17,6 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR / 'login'
 BASE_DIR / 'vvs'
 BASE_DIR / 'templates'
+BASE_DIR / 'cubeTimer'
 
 
 # Quick-start development settings - unsuitable for production
@@ -61,7 +62,8 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / 'login/templates',
-            BASE_DIR / 'vvs/templates'
+            BASE_DIR / 'vvs/templates',
+            BASE_DIR / 'cubeTimer/templates'
         ]
         ,
         "APP_DIRS": True,
