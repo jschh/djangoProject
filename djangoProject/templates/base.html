@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="time"></title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            font-family: Tahoma, sans-serif;
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+        }
+        .navbar a {
+            font-family: Tahoma, sans-serif;
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .dropdown {
+            font-family: Tahoma, sans-serif;
+            float: left;
+            overflow: hidden;
+        }
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: red;
+        }
+        .dropdown-content {
+            font-family: Tahoma, sans-serif;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            font-family: Tahoma, sans-serif;
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+    <script>
+        function updateTime() {
+            var currentdate = new Date();
+            var hours = currentdate.getHours();
+            var minutes = currentdate.getMinutes().toString().padStart(2, '0');
+            var datetime = 'Welcome | ' +hours + ":" + minutes;
+            document.getElementById('time').innerHTML = datetime;
+        }
+        setInterval(updateTime, 1);
+    </script>
+    <script>
+        window.onload = function() {
+            var dropdown = document.querySelector('.dropdown');
+            dropdown.addEventListener('click', function() {
+                var dropdownContent = this.querySelector('.dropdown-content');
+                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+            });
+        };
+</script>
+
+</head>
+<body>
+
+<div class="navbar">
+  <a href="">Home</a>
+  <a href="cubeTimer">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">Dropdown 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="cubeTimer">CubeTimer</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
+</div>
+
+<h3>Welcome to the website</h3>
+<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
+
+</body>
+</html>

@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR / 'login'
 BASE_DIR / 'vvs'
-BASE_DIR / 'templates'
+BASE_DIR / 'djangoProject'
 BASE_DIR / 'cubeTimer'
 
 
@@ -63,7 +63,8 @@ TEMPLATES = [
         "DIRS": [
             BASE_DIR / 'login/templates',
             BASE_DIR / 'vvs/templates',
-            BASE_DIR / 'cubeTimer/templates'
+            BASE_DIR / 'cubeTimer/templates',
+            BASE_DIR / 'djangoProject/templates',
         ]
         ,
         "APP_DIRS": True,
