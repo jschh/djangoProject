@@ -24,4 +24,7 @@ urlpatterns = [
     path("vvs/", include("vvs.urls")),
     path("admin/", admin.site.urls),
     path("cubeTimer/", include("cubeTimer.urls")),
+    path("kracher/", include("kracher.urls")),
+    path("typeracer/", include("typeracer.urls")),
+
 ]

@@ -18,6 +18,8 @@ BASE_DIR / 'login'
 BASE_DIR / 'vvs'
 BASE_DIR / 'djangoProject'
 BASE_DIR / 'cubeTimer'
+BASE_DIR / 'kracher'
+BASE_DIR / 'typeracer'
 
 
 # Quick-start development settings - unsuitable for production
@@ -67,6 +69,8 @@ TEMPLATES = [
             BASE_DIR / 'vvs/templates',
             BASE_DIR / 'cubeTimer/templates',
             BASE_DIR / 'djangoProject/templates',
+            BASE_DIR / 'kracher/templates',
+            BASE_DIR / 'typeracer/templates',
         ]
         ,
         "APP_DIRS": True,
