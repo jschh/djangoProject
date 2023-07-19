@@ -1,43 +1,136 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Spacebar Timer</title>
+{% extends 'base.html' %}
+
+{% block content %}
     <style>
-        #times {
+        #timesContainer {
+            position: absolute;
+            top: 240px;
+            left: 15px;
             margin-right: 50px;
+            text-align: left;
+            overflow: auto;
+            max-height: 220px;
+            width: 130px;   /* Adjust this for scrollbar position */
         }
         #container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        #time {
+            color: #333333FF;
+            font-size: 10em;
+            text-align: center;
+        }
+        #button button {
+            background-color: #333333FF;
+            color: #fafafa;
+            border-radius: 20px;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        #fixedHeader {
+            position: absolute;
+            top: 180px;
+            left: 15px;
+            margin-right: 50px;
         }
     </style>
-</head>
-<body>
-    <h1>Press spacebar to start/stop the timer</h1>
+    <h1 style="text-align: center;">Press spacebar to start/stop the timer</h1>
     <div id="container">
-        <table id="times">
-            <tr>
-                <th>Times</th>
-            </tr>
-        </table>
         <h2 id="time">0.00</h2>
+        <div id="button">
+            <button id="deleteLast">Delete Last Time</button>
+            <button id="deleteAll">Delete All Times</button>
+        </div>
+        <div id="fixedHeader">
+            <table>
+                <tr>
+                    <th>Times</th>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td id="average">Average: 0.00</td>
+                </tr>
+            </table>
+        </div>
+        <div id="timesContainer">
+            <table id="times">
+            </table>
+        </div>
     </div>
 
     <script>
         let timer = 0;
         let intervalId = null;
         let startTimestamp = null;
+        let times = localStorage.getItem('times') ? JSON.parse(localStorage.getItem('times')) : [];
+        let canStart = true;
+
+        window.onload = function() {
+            for (let time of times) {
+                addTimeToTableWithoutAppending(time);
+            }
+            updateAverage();
+        };
 
         function updateTimer() {
             timer = (Date.now() - startTimestamp) / 1000;
             document.getElementById('time').textContent = timer.toFixed(2);
         }
 
-        function addTimeToTable(time) {
+        function addTimeToTableWithoutAppending(time) {
             const table = document.getElementById('times');
-            const row = table.insertRow();
+            const row = table.insertRow(-1);
             const cell = row.insertCell();
             cell.textContent = time.toFixed(2);
+        }
+
+        function addTimeToTable(time) {
+            addTimeToTableWithoutAppending(time);
+            times.push(time);
+            updateAverage();
+            localStorage.setItem('times', JSON.stringify(times));
+        }
+
+        function updateAverage() {
+            let sum = 0;
+            for (let time of times) {
+                sum += parseFloat(time);
+            }
+            let average = sum / times.length;
+            document.getElementById('average').textContent = "Average: " + average.toFixed(2);
+        }
+
+        function deleteLastTime() {
+            if (times.length > 0) {
+                times.pop();
+                const table = document.getElementById('times');
+                table.deleteRow(-1);
+                updateAverage();
+                localStorage.setItem('times', JSON.stringify(times));
+            }
+        }
+
+        function deleteAllTimes() {
+            times = [];
+            const table = document.getElementById('times');
+            let rows = table.rows.length;
+            for (let i = rows - 1; i >= 1; i--) {
+                table.deleteRow(i);
+            }
+            updateAverage();
+            localStorage.clear();
         }
 
         window.addEventListener('keydown', (event) => {
@@ -49,12 +142,33 @@
                     addTimeToTable(timer);
                     timer = 0;
                     document.getElementById('time').textContent = timer.toFixed(2);
-                } else {
+                    canStart = false;
+                    setTimeout(() => {
+                        canStart = true;
+                    }, 1000);
+                }
+            } else if (event.code === 'Escape') {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                    timer = 0;
+                    document.getElementById('time').textContent = timer.toFixed(2);
+                }
+            }
+        });
+
+        window.addEventListener('keyup', (event) => {
+            if (event.code === 'Space') {
+                event.preventDefault();
+                if (!intervalId && canStart) {
                     startTimestamp = Date.now();
                     intervalId = setInterval(updateTimer, 10);
                 }
             }
         });
+
+        document.getElementById('deleteLast').addEventListener('click', deleteLastTime);
+        document.getElementById('deleteAll').addEventListener('click', deleteAllTimes);
+
     </script>
-</body>
-</html>
+{% endblock %}

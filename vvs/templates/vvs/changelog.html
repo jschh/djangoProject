@@ -1,7 +1,14 @@
-<h1>Changelog</h1>
+{% extends 'base.html' %}
+
+{% block content %}
 
 {% for entry in object_list %}
     <h2>{{ entry.version }}</h2>
     <p>{{ entry.release_date }}</p>
     <p>{{ entry.description }}</p>
 {% endfor %}
+
+<p>First entry: {{ object_list.first }}</p>
+
+{% endblock %}
+```

@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "login.apps.LoginConfig",
     "vvs.apps.VvsConfig",
+    "cubeTimer.apps.CubetimerConfig",
+
 ]
 
 MIDDLEWARE = [
