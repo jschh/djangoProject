@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<style>
+html {
+    background-image: url('https://i.ibb.co/W0WDPnv/Untitled-design.png');
+    background-size: cover;
+    color: white;
+}
+</style>
 {% for entry in object_list %}
     <h2>{{ entry.version }}</h2>
     <p>{{ entry.release_date }}</p>
