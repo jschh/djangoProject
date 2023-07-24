@@ -1,26 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <style>
+<style>
+        html {
+			background-image: url('https://i.ibb.co/W0WDPnv/Untitled-design.png');
+            background-size: cover; /* Add this line */
+            color: white;
+
+        }
+
+        /* Glassmorphism Style */
+        .glassmorphism {
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			border-radius: 20px;
+			backdrop-filter: blur(10px);
+			border: 2px solid rgba(255, 255, 255, 0.18);
+			background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur( 4px );
+        }
+
+        /* Your existing styles, updated to use the glassmorphism class */
         #timesContainer {
+            padding-top: 15px;
+            padding-left: 15px;
+            padding-bottom: 15px;
             position: absolute;
-            top: 240px;
+            top: 140px;
             left: 15px;
             margin-right: 50px;
+            margin-top: 150px;
             text-align: left;
             overflow: auto;
             max-height: 220px;
-            width: 130px;   /* Adjust this for scrollbar position */
+            width: 200px;
         }
         #container {
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
+            width: 500px;
+            height: 300px;
+            margin-top: 150px;
+            margin-left: auto;
+            margin-right: auto;
         }
         #time {
-            color: #333333FF;
-            font-size: 10em;
+            color: #ffffff;
+            font-size: 7em;
             text-align: center;
         }
         #button button {
@@ -37,21 +64,21 @@
             transition-duration: 0.4s;
             cursor: pointer;
         }
-
         #fixedHeader {
-            position: absolute;
-            top: 180px;
+            position: sticky;
+            top: 0;
             left: 15px;
             margin-right: 50px;
         }
     </style>
-    <h1 style="text-align: center;">Press spacebar to start or stop the timer</h1>
-    <div id="container">
+    <div id="container" class="glassmorphism">  <!-- Add glassmorphism class here -->
         <h2 id="time">0.00</h2>
         <div id="button">
             <button id="deleteLast">Delete Last Time</button>
             <button id="deleteAll">Delete All Times</button>
         </div>
+    </div>
+    <div id="timesContainer" class="glassmorphism">  <!-- Add glassmorphism class here and move timesContainer outside of container -->
         <div id="fixedHeader">
             <table>
                 <tr>
@@ -64,11 +91,10 @@
                 </tr>
             </table>
         </div>
-        <div id="timesContainer">
-            <table id="times">
-            </table>
-        </div>
+        <table id="times">
+        </table>
     </div>
+
 
     <script>
         let timer = 0;
@@ -185,7 +211,7 @@
                         stopInspectionTimer();
                         startTimestamp = Date.now();
                         intervalId = setInterval(updateTimer, 10);
-                        document.getElementById('time').style.color = '#333333FF';
+                        document.getElementById('time').style.color = '#ffffff';
                     } else {
                         startInspectionTimer();
                     }

@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/stylesheet.css">
+
 
 
 	<style>
@@ -16,9 +18,9 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background-image: url('https://i.ibb.co/CbgDfTP/3cWIC9d.png');
+			background-image: url('https://i.ibb.co/W0WDPnv/Untitled-design.png');
+            background-size: cover; /* Add this line */
 			background-attachment: fixed;
-			background-size: cover;
 		}
 
 		.user_card {
@@ -95,6 +97,9 @@
 
 		.input_user,
 		.input_pass:focus {
+        {# text should align left but a little to the right #}
+          text-align: left;
+          padding-left: 12px;
 		  box-shadow: none !important;
 		  outline: 0px !important;
 		  background-color: transparent !important;
@@ -126,40 +131,53 @@
 		.test {
 		  height: 80px;
 		}
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
 	</style>
 
 </head>
 <body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center form_container">
-					<form method="POST" action="">
+    <!-- Back Button -->
+    <a href="{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}" class="back-button">
+        &larr;
+    </a>
+
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center form_container">
+                    <form method="POST" action="">
                         {% csrf_token %}
-						<div class="test">
-							<h3 id="form-title">login.</h3>
-						</div>
-						<label for="username">username</label>
-						<div class="input-group">
-							<input type="text" id="username" name="username" class="input_user">
-						</div>
-						<label for="password">password</label>
-						<div class="input-group">
-							<input type="password" id="password" name="password" class="input_user">
-						</div>
-						<div class="d-flex justify-content-center mt-3 login_container">
-							<input class="btn login_btn" type="submit" value="Login">
-						</div>
-					</form>
-				</div>
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <div class="test">
+                            <h3 id="form-title">login.</h3>
+                        </div>
+                        <label for="username">username</label>
+                        <div class="input-group">
+                            <input type="text" id="username" name="username" class="input_user">
+                        </div>
+                        <label for="password">password</label>
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" class="input_user">
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input class="btn login_btn" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
