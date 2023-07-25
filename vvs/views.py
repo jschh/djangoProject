@@ -5,23 +5,16 @@ from django.urls import reverse
 from django.views import generic
 from vvs.models import ChangeLog
 from django.views.generic import ListView
-
-# Create your views here.
-
-# class IndexView(generic.ListView):
-#     template_name = "vvs/index.html"
-#     context_object_name = "latest_question_list"
+from django.contrib.auth.decorators import login_required
 
 
+# Create your views here
+@login_required(login_url='login')
 def indexView(request):
     return render(request, "vvs/index.html")
-
+@login_required(login_url='login')
 def changelogView(request):
     return render(request, "vvs/changelog.html")
-
-class ChangeLogView(ListView):
-    model = ChangeLog
-    template_name = "vvs/changelog.html"
 
 
 
