@@ -5,18 +5,18 @@ html {
 }
 
 #timesContainer {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
     position: absolute;
-    top: 40%;
-    left: 2rem;
-    padding-top: 1rem;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
+    top: 140px;
+    left: 15px;
+    margin-right: 50px;
+    margin-top: 150px;
     text-align: left;
     overflow: auto;
     max-height: 220px;
     width: 200px;
-    float: left;
-
 }
 
 #container {
@@ -26,7 +26,7 @@ html {
     align-items: center;
     width: 500px;
     height: 300px;
-    top: 24%;
+    margin-top: 150px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -59,22 +59,27 @@ html {
     margin-right: 50px;
 }
 
-/*#timesContainer {*/
-/*    !* Ihr bisheriger Code... *!*/
+#timesContainer {
+    /* Ihr bisheriger Code... */
 
-/*    scrollbar-width: thin;*/
-/*    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);*/
-/*}*/
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
+}
 
-/*#timesContainer::-webkit-scrollbar {*/
-/*    width: 12px;*/
-/*}*/
+#timesContainer::-webkit-scrollbar {
+    width: 12px;
+}
 
-/*#timesContainer::-webkit-scrollbar-track {*/
-/*    background: rgba(0, 0, 0, 0.1);*/
-/*}*/
+#timesContainer::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
 
-/*#timesContainer::-webkit-scrollbar-thumb {*/
-/*    background-color: rgba(0, 0, 0, 0.5);*/
-/*    border-radius: 20px;*/
-/*}*/
+#timesContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
