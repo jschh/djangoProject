@@ -7,7 +7,7 @@ html {
 #timesContainer {
     padding-top: 15px;
     padding-left: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 16px;
     position: absolute;
     top: 140px;
     left: 15px;
@@ -15,7 +15,7 @@ html {
     margin-top: 150px;
     text-align: left;
     overflow: auto;
-    max-height: 220px;
+    max-height: 233px;
     width: 200px;
 }
 
@@ -39,7 +39,7 @@ html {
 
 #button button {
     background-color: #333333FF;
-    color: #fafafa;
+    color: #ffffff;
     border-radius: 20px;
     border: none;
     padding: 10px 20px;
@@ -68,15 +68,17 @@ html {
 
 #timesContainer::-webkit-scrollbar {
     width: 12px;
+
 }
 
 #timesContainer::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
+
 }
 
 #timesContainer::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
+    border-radius: 20rem;
 }
 
 ::-webkit-scrollbar-track {
