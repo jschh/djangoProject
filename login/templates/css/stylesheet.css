@@ -1,9 +1,0 @@
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-image: url('https://i.ibb.co/CbgDfTP/3cWIC9d.png');
-    background-size: cover; /* Add this line */
-    background-attachment: fixed;
-    background-size: cover;
-}

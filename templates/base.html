@@ -1,39 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+
+{% block title %}
+{% endblock %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
 <style>
 
-body {
-    font-family: 'Inter', sans-serif;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.navbar {
-  overflow: hidden;
-  background: rgba( 255, 255, 255, 0.1 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 4px );
-  -webkit-backdrop-filter: blur( 4px );
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
-  border-radius: 20px;
-}
-
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
 
 .dropdown {
   float: left;
@@ -52,9 +30,6 @@ body {
   margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: rgba(255,255,255,0.1);
-}
 
 .dropdown-content {
   display: none;
@@ -88,24 +63,24 @@ body {
 </style>
 </head>
 
-<div class="navbar">
+<div class="navbar glass">
   <a href="/">Home</a>
-  <a href="/cubeTimer/"><i class="fas fa-cube"></i></a>
+  <a href="/cubeTimer"><i class="fas fa-cube"></i></a>
   <a href="/vvs/changelog/"><i class="fas fa-newspaper"></i></a>
   <div class="dropdown">
     <button class="dropbtn">Andere Apps
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="/kracher/">Random Kracher</a>
-      <a href="/typeracer/">Typeracer type game WIP</a>
+      <a href="/kracher">Random Kracher</a>
+      <a href="/typeracer">Typeracer type game WIP</a>
     </div>
   </div>
   <div class="login" style="float: right;">
     {% if user.is_authenticated %}
       <a href="/logout/">Logout</a>
     {% else %}
-      <a href="/login/">Login</a>
+      <a href="/login">Login</a>
     {% endif %}
   </div>
 </div>

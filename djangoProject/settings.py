@@ -65,10 +65,10 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
+            BASE_DIR / 'templates',
             BASE_DIR / 'login/templates',
             BASE_DIR / 'vvs/templates',
             BASE_DIR / 'cubeTimer/templates',
-            BASE_DIR / 'djangoProject/templates',
             BASE_DIR / 'kracher/templates',
             BASE_DIR / 'typeracer/templates',
         ]
@@ -134,6 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "djangoProject/static",
+    BASE_DIR / "login/static",
+    BASE_DIR / "cubeTimer/static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
