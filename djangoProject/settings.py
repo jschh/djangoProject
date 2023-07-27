@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     "login.apps.LoginConfig",
     "vvs.apps.VvsConfig",
     "cubeTimer.apps.CubetimerConfig",
+    "kracher.apps.KracherConfig",
+    "typeracer.apps.TyperacerConfig",
+    "fontawesomefree",
 
 ]
 
@@ -135,7 +138,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
-    BASE_DIR / "djangoProject/static",
+    BASE_DIR / "djangoProject/../static",
     BASE_DIR / "login/static",
     BASE_DIR / "cubeTimer/static",
 ]

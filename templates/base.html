@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 {% block title %}
 {% endblock %}
@@ -10,6 +10,30 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<script src="{% static 'js/main.js' %}" defer></script>
+
+<html style="visibility: hidden;" id="html" lang="en">
+
+<script>
+  // Überprüfen Sie den Dark Mode Status beim Laden der Seite
+  let darkMode = localStorage.getItem('darkMode');
+
+  if(darkMode === null){
+    localStorage.setItem('darkMode', 'false');
+    darkMode = 'false';
+  }
+
+  if(darkMode === 'true'){
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+
+  // Machen Sie das Dokument sichtbar, nachdem der Modus festgelegt wurde
+  document.getElementById('html').style.visibility = 'visible';
+</script>
+
+
 <style>
 
 
@@ -82,6 +106,8 @@
     {% else %}
       <a href="/login">Login</a>
     {% endif %}
+  <button class="iconButtonMain" onclick="toggleDarkMode()"><i class="fas fa-lightbulb fa-lg iconButtonSecond"></i></button>
+
   </div>
 </div>
 
@@ -89,4 +115,5 @@
 {% block content %}
 {% endblock %}
 
+</html>
 </html>

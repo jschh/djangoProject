@@ -1,0 +1,132 @@
+/* ALLGEMEIN */
+
+html, body {
+    background-image: var(--html-background);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+    font-weight: 200;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-size: cover;  /* Dies sorgt dafür, dass das Bild den gesamten Bildschirm bedeckt */
+    background-repeat: no-repeat;  /* Dies verhindert, dass das Bild wiederholt wird */
+    background-position: center;  /* Dies zentriert das Bild */
+}
+
+/* NAVBAR */
+
+.navbar {
+    margin-left: 10%;
+    margin-top: 0.4%;
+    margin-right: 10%;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Glassmorphism */
+
+.glass {
+  background: var(--glass-bg);
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 8px 32px 0 var(--glass-box-shadow);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--glass-border) !important;
+  color: white;
+}
+
+.center-V {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+/* Dark Mode Icons */
+.iconButtonSecond {
+    padding: 1rem;
+    left: 0;
+}
+
+.iconButtonMain {
+    background: transparent;
+    border: transparent;
+    color: white;
+}
+
+.right {
+    position: absolute;
+    right: 1rem;
+    top: 1rem
+}
+
+/* Für login */
+
+.links a {
+  color: var(--loginButton-Color)!important;
+}
+
+.login_btn {
+  background: var(--loginButton-Color)!important;
+}
+
+.login_btn:hover {
+  background: var(--loginButton-Color)!important;
+}
+
+/* Dark Mode */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-box-shadow: rgba(26, 26, 26, 0.37);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --html-background: url('https://i.ibb.co/4mX49GB/18-A84877-3-B32-44-A2-9-FB0-4-A59-B531-DD8-E-1-201-a.jpg');
+    --loginButton-Color: rgb(13, 112, 255);
+}
+
+[data-theme="dark"] {
+    --glass-bg: rgba(0, 0, 0, 0.7); /* anpassen nach Ihren Vorstellungen */
+    --glass-box-shadow: rgba(0, 0, 0, 0.6); /* anpassen nach Ihren Vorstellungen */
+    --glass-border: rgba(255, 255, 255, 0.1); /* anpassen nach Ihren Vorstellungen */
+    --html-background: url('https://r4.wallpaperflare.com/wallpaper/516/836/978/abstract-fluid-liquid-artwork-colorful-hd-wallpaper-e8363d38a0c06c08301c011ea8c2944a.jpg');
+    --loginButton-Color: rgb(255, 0, 0);
+
+
+
+    /* Weitere Farbvariablen für den Dark-Mode hier */
+}

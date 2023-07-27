@@ -47,7 +47,6 @@ label {
 
 .login_btn {
   width: 380px;
-  background: #ff194a;
   color: #fff;
   border: none;
   transition: 0.3s ease;
@@ -55,7 +54,6 @@ label {
 }
 
 .login_btn:hover {
-  background: #ff194a;
   transform: translateY(-2px);
 }
 
@@ -101,7 +99,6 @@ label {
 }
 
 .links a {
-  color: #ff194a
 }
 
 .custom-input-spacing {
@@ -124,15 +121,6 @@ label {
 
 .test {
   height: 80px;
-}
-
-.back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 20px;
-    color: #fff;
-    cursor: pointer;
 }
 
 .back-button:hover {

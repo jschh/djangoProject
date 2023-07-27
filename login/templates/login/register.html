@@ -11,11 +11,31 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+  <script src="{% static 'js/main.js' %}" defer></script>
 
 
 
+<script>
+  // Überprüfen Sie den Dark Mode Status beim Laden der Seite
+  let darkMode = localStorage.getItem('darkMode');
+
+  if(darkMode === null){
+    localStorage.setItem('darkMode', 'false');
+    darkMode = 'false';
+  }
+
+  if(darkMode === 'true'){
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+
+  // Machen Sie das Dokument sichtbar, nachdem der Modus festgelegt wurde
+  document.getElementById('html').style.visibility = 'visible';
+</script>
 </head>
 <body>
+  <button class="iconButtonMain" onclick="toggleDarkMode()"><i class="fas fa-lightbulb fa-lg iconButtonSecond"></i></button>
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card_register">
