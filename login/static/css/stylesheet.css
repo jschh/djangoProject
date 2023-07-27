@@ -14,16 +14,16 @@ html {
   height: 550px;
   margin-top: auto;
   margin-bottom: auto;
-  background: rgba(255, 255, 255, 0.1);
-  position: relative;
+  background: var(--glass-bg);  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  box-shadow: 0 8px 32px 0 rgba(26, 26, 26, 0.37);
+  box-shadow: 0 8px 32px 0 var(--glass-box-shadow);
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.18);
+  border: 2px solid var(--glass-border) !important;
 }
+
 
 .user_card_loginfix {
   width: 540px !important;
@@ -141,4 +141,26 @@ label {
     font-size: 20px;
     color: #fff;
     cursor: pointer;
+}
+
+/* Dark Mode */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-box-shadow: rgba(26, 26, 26, 0.37);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --html-background: url('/static/images/websitewallpaper.png');
+    --loginButton-Color: rgb(90, 54, 253);
+}
+
+[data-theme="dark"] {
+    --glass-bg: rgba(0, 0, 0, 0.31) !important;
+    --glass-box-shadow: rgba(0, 0, 0, 0.27)!important;
+    --glass-border: rgba(255, 255, 255, 0.1)!important;
+    --html-background: url('/static/images/wallpaperDark.png')!important;
+    --loginButton-Color: rgb(0, 0, 174);
+
+
+
+    /* Weitere Farbvariablen für den Dark-Mode hier */
 }

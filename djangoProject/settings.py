@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "cubeTimer.apps.CubetimerConfig",
     "kracher.apps.KracherConfig",
     "typeracer.apps.TyperacerConfig",
-    "fontawesomefree",
+
 
 ]
 
