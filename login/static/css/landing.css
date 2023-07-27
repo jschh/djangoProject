@@ -10,7 +10,6 @@
 	width: 123px;
 	height: 123px;
 	flex-shrink: 0;
-	opacity: 0.8;
 	padding: 1rem;
 }
 
@@ -20,13 +19,32 @@
     text-align: right;
     padding-right: 2rem;
     padding-bottom: 5rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
+
 
 
 .picandwelcome {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.userData {
+	font-size: 0.9rem;
+    font-weight: 500;
+    padding-left: 2rem;
+    margin-top: 2rem;
+
+}
+
+.userId {
+    font-size: 1.2rem;  /* Beispielgröße */
+    margin: 0;
+
+}
+
+.userEmail {
+    font-size: 0.9rem;  /* Beispielgröße */
+    margin: 0;
 }
