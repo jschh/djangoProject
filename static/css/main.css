@@ -7,12 +7,10 @@ html, body {
     background-position: center;
     background-attachment: fixed;
     overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
 }
 
-body {
-	font-family: 'Inter', sans-serif;
-    font-weight: 200;
-}
 
 html, body {
     height: 100%;
@@ -54,7 +52,7 @@ html, body {
   flex-direction: column;
   box-shadow: 0 8px 32px 0 var(--glass-box-shadow);
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   border: 2px solid var(--glass-border) !important;
   color: white;
 }
@@ -107,6 +105,13 @@ html, body {
 
 .login_btn:hover {
   background: var(--loginButton-Color)!important;
+}
+
+
+/* Landing zeug */
+
+.userWelcome {
+    font-weight: 100;
 }
 
 /* Dark Mode */

@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Random Kracher</title>
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+
+
+{% endblock %}
 {% block content %}
 
-    <div class="userCard"></div>
+    <div class="userCard center glass" >
+    	<div class="picandwelcome">
+            <div class="userPicture" >
+            <img class="userPicture" src="/static/images/head.png" alt="">
+        </div>
+    	<div class="userWelcome" >
+    		<h2>Welcome <br> {{ user.username }}.</h2>
+        </div>
+        </div>
+    	<div class="userData" >
+
+        </div>
+    </div>
 
 {% endblock %}
 
