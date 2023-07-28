@@ -9,17 +9,11 @@ html, body {
     overflow: hidden;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-}
-
-
-html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-size: cover;  /* Dies sorgt dafür, dass das Bild den gesamten Bildschirm bedeckt */
-    background-repeat: no-repeat;  /* Dies verhindert, dass das Bild wiederholt wird */
-    background-position: center;  /* Dies zentriert das Bild */
 }
+
 
 /* NAVBAR */
 
@@ -47,9 +41,6 @@ html, body {
 
 .glass {
   background: var(--glass-bg);
-  position: relative;
-  justify-content: center;
-  flex-direction: column;
   box-shadow: 0 8px 32px 0 var(--glass-box-shadow);
   border-radius: 20px;
   backdrop-filter: blur(5px);

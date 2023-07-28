@@ -1,57 +1,68 @@
-.userCard {
-    width: 413px;
-    height: 263px;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.pseudoBody {
+    color: white;
+    min-block-size: 100dvh;
+    display: grid;
+    place-items: center;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+h2 {
+    display: block;
+    font-size: 1em;
+    margin-block-start: 0;
+    margin-block-end: 0;
+
+}
+
+.userCard{
+
+    /*styling*/
+    color: white;
+    width: 416px;
+    height: 262.315px;
     flex-shrink: 0;
-    border-radius: 25px;
-    backdrop-filter: blur(5px);
-    transition: transform 0.1s ease-out;
-    will-change: transform;
-    justify-content: center;
+    border-radius: 10px;
+    padding: 1rem;
 
+    position: relative;
 
+    transform-style: preserve-3d;
+	transform:
+    	perspective(2000px)
+    	rotateY(var(--rotateY))
+    	rotateX(var(--rotateX));
+}
+
+.userPicture{
+    width: 123px;
+    height: 123px;
+    flex-shrink: 0;
+    border-radius: 9px;
 
 }
 
-.userPicture {
-	width: 123px;
-	height: 123px;
-	flex-shrink: 0;
-	padding: 1rem;
-}
-
-.userWelcome {
-    font-size: 0.9rem;
-    font-weight: 500;
+.userWelcome{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
     text-align: right;
-    padding-right: 2rem;
-    padding-bottom: 5rem;
-    text-rendering: optimizeLegibility;
 }
 
-
-
-.picandwelcome {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.userData{
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    text-align: left;
 }
 
-.userData {
-	font-size: 0.9rem;
-    font-weight: 500;
-    padding-left: 2rem;
-    margin-top: 2rem;
-
-}
-
-.userId {
-    font-size: 1.2rem;  /* Beispielgröße */
-    margin: 0;
-
-}
-
-.userEmail {
-    font-size: 0.9rem;  /* Beispielgröße */
-    margin: 0;
-}
 
