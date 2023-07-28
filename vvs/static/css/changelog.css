@@ -1,4 +1,17 @@
-.userCard {
+
+
+.b1 {
+
+  background-blend-mode: multiply;
+  min-block-size: 10dvh;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+
+}
+
+pre {
+
     width: 413px;
     height: 263px;
     flex-shrink: 0;
@@ -6,11 +19,13 @@
     backdrop-filter: blur(5px);
     transition: transform 0.1s ease-out;
     will-change: transform;
-    justify-content: center;
 
+  position: relative;
 
-
+  transform-style: preserve-3d;
+  transform: perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
 }
+
 
 .userPicture {
 	width: 123px;
@@ -54,4 +69,7 @@
     font-size: 0.9rem;  /* Beispielgröße */
     margin: 0;
 }
+
+
+
 
