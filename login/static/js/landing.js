@@ -1,20 +1,25 @@
 let card = document.querySelector('.userCard');
+let debugLine = document.querySelector('.debug-line');
 let scale = 1;
 let rotation = 0;
 
 // Set the initial transform values
-card.style.transform = `rotateY(${rotation}deg) rotateX(0deg) scale(${scale})`;
-
-// Get the center of the card
-let rect = card.getBoundingClientRect();
-let cardCenterX = rect.left + rect.width / 2;
-let cardCenterY = rect.top + rect.height / 2;
+card.style.transform = `rotateY(0deg) rotateX(0deg) scale(${scale})`;
 
 document.addEventListener('mousemove', (e) => {
-    // Calculate rotation values based on the card center
-    let xAxis = (cardCenterX - e.pageX) / 15;
-    let yAxis = (cardCenterY - e.pageY) / 15;
+    // Get the center of the screen
+    let centerX = window.innerWidth / 2;
+    let centerY = window.innerHeight / 2;
+
+    // Calculate rotation values based on the center of the screen
+    let xAxis = (e.pageX - centerX) / 18;
+    let yAxis = -(e.pageY - centerY) / 18;
+
     card.style.transform = `rotateY(${xAxis + rotation}deg) rotateX(${yAxis}deg) scale(${scale})`;
+
+    // Calculate the angle for the debug line
+    let angle = Math.atan2(e.pageY - centerY, e.pageX - centerX) * 180 / Math.PI;
+    debugLine.style.transform = `rotate(${angle}deg)`;
 });
 
 document.addEventListener('mouseleave', (e) => {
