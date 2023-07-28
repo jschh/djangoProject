@@ -32,7 +32,6 @@ h2 {
     height: 262.315px;
     flex-shrink: 0;
     border-radius: 10px;
-    padding: 1rem;
 
     position: relative;
 
@@ -48,14 +47,21 @@ h2 {
     height: 123px;
     flex-shrink: 0;
     border-radius: 9px;
+    margin-top: 35px;
+    margin-left: 35px;
 
 }
 
 .userWelcome{
+    font-size: 20px;
     position: absolute;
-    top: 1rem;
-    right: 2rem;
+    top: 28px;
+    right: 32px;
     text-align: right;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
 }
 
 .userData{
@@ -64,5 +70,16 @@ h2 {
     left: 2rem;
     text-align: left;
 }
+ .userMail{
+    font-size: 13px;
+	font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+ }
+ .userID{
+     font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-size: 20px;
 
-
+ }
