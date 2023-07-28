@@ -6,6 +6,8 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  background-image: var(--html-background);
+
 }
 
 .user_card_register {
@@ -149,7 +151,7 @@ label {
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-box-shadow: rgba(26, 26, 26, 0.37);
     --glass-border: rgba(255, 255, 255, 0.18);
-    --html-background: url('/static/images/websitewallpaper.png');
+    --html-background: url('/static/images/websitewallpaper.png') !important;
     --loginButton-Color: rgb(90, 54, 253);
 }
 
