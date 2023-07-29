@@ -10,15 +10,19 @@
   	<link rel="stylesheet" href="{% static 'css/cubeTimer.css' %}">
 	<script src="{% static 'js/cubeTimer.js' %}" defer></script>
     <script src="{% static 'js/main.js' %}" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     {% endblock %}
 
 </head>
 {% block content %}
-    <div id="container" class="glass center">
-        <h2 id="time">0.00</h2>
-        <div id="button">
-            <button id="deleteLast">Delete Last Time</button>
-            <button id="deleteAll">Delete All Times</button>
+    <div class="mainContainer">
+        <div class="center-H" style="bottom: 17rem">
+            <button class="glass button" id="deleteLast">Delete Last Time</button>
+            <button class="glass button" id="deleteAll">Delete All Times</button>
+        </div>
+        <div id="container" class="glass center">
+            <h2 id="time">0.00</h2>
         </div>
     </div>
     <div class="container-main glass center-V">

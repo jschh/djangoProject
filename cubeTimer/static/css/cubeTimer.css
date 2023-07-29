@@ -16,27 +16,22 @@ html {
     height: 300px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 #time {
     color: #ffffff;
     font-size: 7em;
     text-align: center;
+
 }
 
-#button button {
-    background-color: #333333FF;
-    color: #ffffff;
-    border-radius: 20px;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
+.button {
+    border-color: transparent;
+    padding: 0.7rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 #fixedHeader {
@@ -91,4 +86,11 @@ html {
 
 .container-subHeader{
     padding-bottom: 0.75rem;
+}
+
+.mainContainer{
+    padding: 1rem;
+    color: red!important;
+    width: 5rem;
+
 }
