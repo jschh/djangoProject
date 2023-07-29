@@ -5,6 +5,7 @@ let times = localStorage.getItem('times') ? JSON.parse(localStorage.getItem('tim
 let canStart = true;
 let inspectionIntervalId = null;
 let inspectionTime = 15;
+let spaceKeyDownTimestamp = null;
 
 window.onload = function() {
     for (let i = times.length - 1; i >= 0; i--) {
@@ -42,6 +43,7 @@ function stopInspectionTimer() {
         clearInterval(inspectionIntervalId);
         inspectionIntervalId = null;
         inspectionTime = 15;
+        document.getElementById('time').textContent = '0.00';
     }
 }
 
@@ -94,33 +96,18 @@ let isSpaceKeyDown = false;
 window.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
         event.preventDefault();
-        if (!isSpaceKeyDown) {
+        if (!isSpaceKeyDown && !inspectionIntervalId && !intervalId && canStart) {
             isSpaceKeyDown = true;
-            if (intervalId) {
-                clearInterval(intervalId);
-                intervalId = null;
-                addTimeToTable(timer);
-                timer = 0;
-                document.getElementById('time').textContent = timer.toFixed(2);
-                canStart = false;
-                setTimeout(() => {
-                    canStart = true;
-                }, 1000);
-            } else if (inspectionIntervalId) {
-                stopInspectionTimer();
-                startTimestamp = Date.now();
-                intervalId = setInterval(updateTimer, 10);
-                document.getElementById('time').style.color = '#ffffff';
-            } else {
-                startInspectionTimer();
-            }
+            spaceKeyDownTimestamp = Date.now();
+            startInspectionTimer();
         }
     } else if (event.code === 'Escape') {
         if (intervalId) {
             clearInterval(intervalId);
             intervalId = null;
-            timer = 0;
-            document.getElementById('time').textContent = timer.toFixed(2);
+        }
+        if (inspectionIntervalId) {
+            stopInspectionTimer();
         }
     }
 });
@@ -129,8 +116,16 @@ window.addEventListener('keyup', (event) => {
     if (event.code === 'Space') {
         event.preventDefault();
         isSpaceKeyDown = false;
-        if (!intervalId && !inspectionIntervalId && canStart) {
-            startInspectionTimer();
+        if (Date.now() - spaceKeyDownTimestamp >= 1000 && inspectionIntervalId) {
+            stopInspectionTimer();
+            startTimestamp = Date.now();
+            intervalId = setInterval(updateTimer, 10);
+            document.getElementById('time').style.color = '#ffffff';
+        } else if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+            addTimeToTable(timer);
+            timer = 0;
         }
     }
 });
