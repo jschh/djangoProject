@@ -25,6 +25,8 @@ urlpatterns = [
     path("login/", views.loginPage, name="login"),
     path("logout/", views.logoutUser, name="logout"),
 
+    path('', include('cubeTimer.urls')),
+
     path("login/", include("login.urls")),
     path("vvs/", include("vvs.urls")),
     path("admin/", admin.site.urls),

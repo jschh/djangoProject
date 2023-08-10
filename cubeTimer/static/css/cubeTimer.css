@@ -71,11 +71,7 @@ html {
 }
 
 .container-main {
-    max-width: 10rem;
-    position: absolute;
     padding: 0.75rem;
-    margin-left: 1rem !important;
-
 }
 
 .container-subTimes{
@@ -86,11 +82,79 @@ html {
 
 .container-subHeader{
     padding-bottom: 0.75rem;
+
 }
 
 .mainContainer{
-    padding: 1rem;
-    color: red!important;
-    width: 5rem;
+    display: flex; /* Oder 'block', je nach Ihrem Design. */
+    align-items: center; /* Zentriert die inneren Elemente horizontal. */
+    width: 500px;
+    height: 450px;
 
 }
+
+.cubeButton {
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.buttonRight{
+        margin-left: 6px;
+}
+
+.buttonLeft{
+        margin-right: 6px;
+}
+
+#container {
+    margin-bottom: 0.5rem; /* oder der gewünschte Abstand */
+}
+
+
+.leftSide {
+    justify-content: center;
+    flex-direction: column;
+    max-width: 10rem;
+    margin-left: 0.5rem !important;
+
+}
+
+.stats{
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+#togglePreview.on {
+    background-color: green;
+    color: white;
+}
+
+#togglePreview.off {
+    background-color: red;
+    color: white;
+}
+
+.toggle-icon-button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.toggle-icon-button:focus {
+    outline: none;
+}
+
+.container-subHeader{
+    padding-bottom: 0 !important;
+
+}
+
+
