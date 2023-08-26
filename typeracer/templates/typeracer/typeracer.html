@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <meta charset="UTF-8">
+    <title>Offline Typing Speed Test</title>
+    <link rel="stylesheet" href="{% static 'css/typeracer.css' %}">
+{% endblock %}
+
+{% block content %}
+<body>
+<div class="container center ">
+    <div class="button-group">
+        <button id="btn10" class="word-count-btn">10</button>
+        <button id="btn25" class="word-count-btn">25</button>
+        <button id="btn50" class="word-count-btn">50</button>
+        <button id="btn100" class="word-count-btn">100</button>
+    </div>
+
+    <div class="glass padding">
+        <div id="words"></div>
+        <div id="result"></div>
+    </div>
+</div>
+
+<script src="{% static 'js/typeracer.js' %}"></script>
+</body>
+{% endblock %}

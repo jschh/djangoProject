@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Random Kracher</title>
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/kracher.css' %}">
+<script src="{% static 'js/kracher.js' %}" defer></script>
+
+
+
+
+{% endblock %}
+{% block content %}
+<style>
+    html {
+        background-image: url('https://i.ibb.co/W0WDPnv/Untitled-design.png');
+        background-size: cover; /* Add this line */
+        color: white;
+
+    }
+</style>
+<div class="center">
+    <div class="jokeCard">
+        <div class="glass" style="padding: 2rem">
+            <h1>Witz des Tages:</h1>
+            <details>
+                <summary>Welcher ist der nervigste Fisch?</summary>
+                Der Stör
+            </details>
+        </div>
+
+        <div class="glass rating">
+            <span class="star" data-value="1">&#9734;</span>
+            <span class="star" data-value="2">&#9734;</span>
+            <span class="star" data-value="3">&#9734;</span>
+            <span class="star" data-value="4">&#9734;</span>
+            <span class="star" data-value="5">&#9734;</span>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

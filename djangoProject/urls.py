@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from login import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.landingView, name="landing"),
@@ -32,6 +34,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("cubeTimer/", include("cubeTimer.urls")),
     path("kracher/", include("kracher.urls")),
-    path("typeracer/", include("typeracer.urls")),
 
+    path("typeracer/", include("typeracer.urls")),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

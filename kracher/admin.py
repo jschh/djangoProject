@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Witz
 
-# Register your models here.
+@admin.register(Witz)
+class WitzAdmin(admin.ModelAdmin):
+    list_display = ['text']

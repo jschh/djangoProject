@@ -24,6 +24,11 @@ h2 {
 
 }
 
+.navbar {
+    z-index: 1000;  /* oder einen anderen hohen Wert */
+}
+
+
 .userCard{
 
     /*styling*/

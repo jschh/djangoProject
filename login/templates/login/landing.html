@@ -5,35 +5,31 @@
 
 
 {% block title %}
-<head>
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome {{ user.username }}.</title>
     <link rel="stylesheet" href="{% static "css/landing.css" %}">
     <script src="{% static 'js/landing.js' %}"></script>
-</head>
 {% endblock title %}
 
 
 
 {% block content %}
-<body>
-    <div class="pseudoBody">
-        <div class="userCard glass">
+<div class="center">
+    <div class="userCard glass">
+        <div class="" >
             <div class="" >
-                <div class="" >
-                <img class="userPicture" src="/static/images/head.png" alt="">
-                </div>
-                <div class="userWelcome" >
-                    <h2>Welcome <br> {{ user.username }}.</h2>
-                </div>
+            <img class="userPicture" src="/static/images/head.png" alt="">
             </div>
-            <div class="userData" >
-                <h2 style="margin-block-end: 0;" class="">id: {{ user.id }}</h2>
-                <p class="">{{ user.email }}</p>
+            <div class="userWelcome" >
+                <h2>Welcome <br> {{ user.username }}.</h2>
             </div>
         </div>
+        <div class="userData" >
+            <h2 style="margin-block-end: 0;" class="">id: {{ user.id }}</h2>
+            <p class="">{{ user.email }}</p>
+        </div>
     </div>
-</body>
+</div>
 {% endblock content %}

@@ -93,6 +93,7 @@ html {
 
 }
 
+
 .cubeButton {
     bottom: 0;
     display: flex;
@@ -155,6 +156,36 @@ html {
 .container-subHeader{
     padding-bottom: 0 !important;
 
+}
+/* Die umgebende .stats Klasse passt sich dynamisch an */
+.stats {
+    width: fit-content;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* Optional: Ein leichter Schatten für den "Glas" Effekt */
+    border-radius: 10px;  /* Optional: Abgerundete Ecken für den "Glas" Effekt */
+}
+
+/* Die Tabelle wird "weitläufiger" und hat Trennlinien */
+table {
+    border-collapse: separate;
+    border-spacing: 0 5px;  /* Dies gibt etwas vertikalen Raum zwischen den Zeilen */
+    width: 100%;
+}
+
+/* Trennlinien und erweiterte Tabellenzellen */
+td, th {
+    padding: 3px 10px;  /* Erweitert die Tabellenzellen */
+    text-align: left;
+}
+
+
+tbody tr:last-child td {
+    border-bottom: none;  /* Entfernt die Trennlinie von der letzten Zeile */
+}
+
+.stats table, .stats tr:first-child {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 

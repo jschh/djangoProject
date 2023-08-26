@@ -1,0 +1,33 @@
+.jokeCard{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transform-style: preserve-3d;
+	transform:
+    	perspective(2000px)
+    	rotateY(var(--rotateY))
+    	rotateX(var(--rotateX));
+}
+
+h1{
+    font-size: 1.5em;
+    margin-block-start: 0;
+}
+
+.rating {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.star {
+    font-size: 1.2rem;
+    transition: color 0.3s;
+    color: transparent;
+    text-shadow: 0 0 0 #ffffff; /* Umriss für den Stern */
+}
+
+.star.active {
+    color: #ffffff;
+}

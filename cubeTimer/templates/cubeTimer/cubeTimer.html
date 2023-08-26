@@ -9,17 +9,15 @@
   	<link rel="stylesheet" href="{% static 'css/main.css' %}">
   	<link rel="stylesheet" href="{% static 'css/cubeTimer.css' %}">
 	<script src="{% static 'js/cubeTimer.js' %}" defer></script>
-
     <script src="{% static 'js/main.js' %}" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
     {% endblock %}
 
 </head>
 {% block content %}
     <div class="mainContainer center">
 
-        <div id="container" class="glass center">
+        <div id="container" class=" glass center">
             <button id="togglePreview" class="toggle-icon-button">
                 <i id="toggleIcon" class="fas fa-eye"></i> <!-- Dies ist das Standardicon für das offene Auge, da der Timer standardmäßig angezeigt wird -->
             </button>
@@ -32,30 +30,42 @@
     </div>
 
     <div class=" center-V leftSide">
-        <div class="stats glass">
-                <table>
-                    <tr>
-                        <th>Stats</th>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td id="best">Best: NaN</td>
-                    </tr>
-                    <tr>
-                        <td id="average">Avg: NaN</td>
-                    </tr>
-                    <tr>
-                        <td id="last3">AVG3: NaN </td>
-                    </tr>
-                    <tr>
-                        <td id="last5">AVG5: NaN</td>
-                    </tr>
-                </table>
-        </div>
+    <div class="stats glass">
+        <table>
+            <thead>
+                <tr>
+                    <th>Stats</th>
+                    <th>Last</th>
+                    <th>Best</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Time:</td>
+                    <td><span id="lastTime">NaN</span></td>
+                    <td><span id="bestTime">NaN</span></td>
+                </tr>
+
+                <tr>
+                    <td>AVG3:</td>
+                    <td><span id="lastLast3">NaN</span></td>
+                    <td><span id="bestLast3">NaN</span></td>
+                </tr>
+                <tr>
+                    <td>AVG5:</td>
+                    <td><span id="lastLast5">NaN</span></td>
+                    <td><span id="bestLast5">NaN</span></td>
+                </tr>
+                <tr>
+                    <td>Avg:</td>
+                    <td><span id="lastAverage">NaN</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
         <div class="container-main glass">
             <div class="container-subHeader">
-                <div>
+                <div class="times">
                 <table>
                     <tr>
                         <th>Times</th>

@@ -8,24 +8,29 @@ let inspectionIntervalId = null;
 let inspectionTime = 15;
 let spaceKeyDownTimestamp = null;
 let showPreview = true;
+let isSpaceKeyDown = false;
 
 
 const ignoredKeys = ['Shift', 'Control', 'Alt', 'Meta', 'Escape'];
 
 
 window.addEventListener('load', function() {
-  console.log("Window loaded");
-    fetch('/get_times/')
-        .then(response => response.json())
-        .then(data => {
-        for (let time of data) {
-            addTimeToTableWithoutAppending(time);
-        }
-        updateAverages();
-        updateToggleButtonState();
+  fetch('/get_times/')
+    .then(response => response.json())
+    .then(data => {
+      for (let i = data.length - 1; i >= 0; i--) {
+        const displayTime = data[i] === -1 ? 'DNF' : data[i];
+        addTimeToTableWithoutAppending(displayTime);
+        times.unshift(displayTime); // Aktualisieren Sie das 'times' Array
+      }
+      updateAverages();
+      updateToggleButtonState();
     });
-
 });
+
+
+
+
 
 
 document.getElementById('togglePreview').addEventListener('click', function() {
@@ -75,14 +80,23 @@ function updateTimer() {
 
 function startInspectionTimer() {
   if (inspectionIntervalId) return;
+
   document.getElementById('time').textContent = inspectionTime.toFixed(2);
   inspectionIntervalId = setInterval(function() {
     inspectionTime--;
+
     if (inspectionTime <= 0) {
       clearInterval(inspectionIntervalId);
       inspectionIntervalId = null;
+
       document.getElementById('time').textContent = 'DNF';
       document.getElementById('time').style.color = 'red';
+
+      times.unshift('DNF'); // Fügt DNF zur Liste hinzu
+      addTimeToTable('DNF'); // Dies sendet DNF an den Server, damit es gespeichert wird
+
+      updateAverages();
+      resetTimer(); // Timer zurücksetzen, damit Sie erneut mit der Inspektion beginnen können
     } else {
       document.getElementById('time').textContent = inspectionTime.toFixed(2);
       if (inspectionTime <= 5) {
@@ -91,6 +105,14 @@ function startInspectionTimer() {
     }
   }, 1000);
 }
+
+
+function resetTimer() {
+  timer = 0;
+  startTimestamp = null;
+  spaceKeyDownTimestamp = null;
+}
+
 
 
 function stopInspectionTimer() {
@@ -104,60 +126,115 @@ function stopInspectionTimer() {
 
 
 function addTimeToTableWithoutAppending(time) {
-  const table = document.getElementById('times');
-  const row = table.insertRow(0);
-  const cell = row.insertCell();
-  cell.textContent = time.toFixed(2);
-  times.unshift(time); // Füge Zeit zum Anfang der 'times'-Array hinzu
+    const table = document.getElementById('times');
+    const row = table.insertRow(0);  // Zeile am Anfang der Tabelle hinzufügen
+    const cell = row.insertCell(0);
+
+    if (typeof time === 'number') {
+        cell.textContent = time.toFixed(2);
+    } else {
+        cell.textContent = time; // Dies sollte "DNF" handhaben
+    }
 }
+
+
 
 
 
 function addTimeToTable(time) {
-  addTimeToTableWithoutAppending(time);
-  times.unshift(time); // Diese Zeile hinzufügen
-  updateAverages();
+    // Wenn es sich um ein DNF handelt, senden Sie -1 an den Server
+    const timeToSend = time === 'DNF' ? -1 : time;
 
+    addTimeToTableWithoutAppending(time);
+    times.unshift(time); // Diese Zeile hinzufügen
+    updateAverages();
 
-  // Senden Sie die Zeit an den Django-Server
-  fetch('/add_time/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest' // Für Django CSRF
-    },
-    body: JSON.stringify({
-      time: time
-    }),
-  });
+    // Senden Sie die Zeit an den Django-Server
+    fetch('/add_time/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest' // Für Django CSRF
+        },
+        body: JSON.stringify({
+            time: timeToSend
+        }),
+    });
 }
 
 
 function updateAverages() {
-  let best = Infinity;
-  let sum = 0;
-  let count = times.length;
+    let best = Infinity;
+    let bestAvg3 = Infinity;
+    let bestAvg5 = Infinity;
+    let sum = 0;
+    let count = 0;
+    let recent = times.length > 0 && times[0] !== 'DNF' ? parseFloat(times[0]) : NaN;
 
-  for (let time of times) {
-    let parsedTime = parseFloat(time);
-    sum += parsedTime;
+    for (let time of times) {
+        if (time !== 'DNF') {
+            let parsedTime = parseFloat(time);
+            sum += parsedTime;
+            count++;
 
-    if (parsedTime < best) {
-      best = parsedTime;
+            if (parsedTime < best) {
+                best = parsedTime;
+            }
+        }
     }
-  }
 
+    // Time
+    document.getElementById('lastTime').textContent = isNaN(recent) ? "DNF" : recent.toFixed(2);
+    document.getElementById('bestTime').textContent = count > 0 ? best.toFixed(2) : "-";
 
-  document.getElementById('best').textContent = "Best: " + (count > 0 ? best.toFixed(2) : "NaN");
-  let averageAll = sum / count;
-  document.getElementById('average').textContent = "Avg: " + averageAll.toFixed(2);
-  let last3 = times.slice(0, 3);
-  let averageLast3 = last3.reduce((a, b) => a + parseFloat(b), 0) / last3.length;
-  document.getElementById('last3').textContent = "AVG3: " + (last3.length >= 3 ? averageLast3.toFixed(2) : "NaN");
-  let last5 = times.slice(0, 5);
-  let averageLast5 = last5.reduce((a, b) => a + parseFloat(b), 0) / last5.length;
-  document.getElementById('last5').textContent = "AVG5: " + (last5.length >= 5 ? averageLast5.toFixed(2) : "NaN");
+    // AVG3
+    if (times.length >= 3) {
+        let last3 = times.slice(0, 3);
+        let hasDNFinLast3 = last3.includes('DNF');
+        let averageLast3 = hasDNFinLast3 ? 'DNF' : (last3.reduce((a, b) => a + parseFloat(b || 0), 0) / last3.length).toFixed(2);
+        document.getElementById('lastLast3').textContent = averageLast3;
+
+        for (let i = 0; i <= times.length - 3; i++) {
+            let avg3Segment = times.slice(i, i + 3);
+            let avg3Value = avg3Segment.reduce((a, b) => a + parseFloat(b || 0), 0) / avg3Segment.length;
+            if (avg3Value < bestAvg3) {
+                bestAvg3 = avg3Value;
+            }
+        }
+        document.getElementById('bestLast3').textContent = bestAvg3.toFixed(2);
+    } else {
+        document.getElementById('lastLast3').textContent = "-";
+        document.getElementById('bestLast3').textContent = "-";
+    }
+
+    // AVG5
+    if (times.length >= 5) {
+        let last5 = times.slice(0, 5);
+        let hasDNFinLast5 = last5.includes('DNF');
+        let averageLast5 = hasDNFinLast5 ? 'DNF' : (last5.reduce((a, b) => a + parseFloat(b || 0), 0) / last5.length).toFixed(2);
+        document.getElementById('lastLast5').textContent = averageLast5;
+
+        for (let i = 0; i <= times.length - 5; i++) {
+            let avg5Segment = times.slice(i, i + 5);
+            let avg5Value = avg5Segment.reduce((a, b) => a + parseFloat(b || 0), 0) / avg5Segment.length;
+            if (avg5Value < bestAvg5) {
+                bestAvg5 = avg5Value;
+            }
+        }
+        document.getElementById('bestLast5').textContent = bestAvg5.toFixed(2);
+    } else {
+        document.getElementById('lastLast5').textContent = "-";
+        document.getElementById('bestLast5').textContent = "-";
+    }
+
+    // Average
+    let averageAll = count > 0 ? (sum / count).toFixed(2) : "-";
+    document.getElementById('lastAverage').textContent = averageAll;
 }
+
+
+
+
 
 
 function deleteLastTime() {
@@ -213,7 +290,7 @@ function deleteAllTimes() {
 
 
 window.addEventListener('keydown', (event) => {
-  if (!ignoredKeys.includes(event.key)) { // Ignoriere spezielle Tasten
+  if (event.code === 'Space') {
     event.preventDefault();
     if (!isSpaceKeyDown && !inspectionIntervalId && !intervalId && canStart) {
       isSpaceKeyDown = true;
@@ -232,9 +309,21 @@ window.addEventListener('keydown', (event) => {
 });
 
 
+
+
 window.addEventListener('keyup', (event) => {
-  if (!ignoredKeys.includes(event.key))  {
-    console.log('worked')
+
+  // Hinzugefügt: Überprüfung, ob die Leertaste losgelassen wird und der Timer läuft
+  if (event.code === 'Space' && intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+    updateTimer();
+    addTimeToTable(timer);
+    timer = 0;
+    return; // Dies stellt sicher, dass nach dem Stoppen des Timers kein weiterer Code in dieser Funktion ausgeführt wird
+  }
+
+  if (event.code === 'Space') {
     event.preventDefault();
     isSpaceKeyDown = false;
     if (Date.now() - spaceKeyDownTimestamp >= 1000 && inspectionIntervalId) {
@@ -242,19 +331,27 @@ window.addEventListener('keyup', (event) => {
       startTimestamp = Date.now();
       intervalId = setInterval(updateTimer, 10);
       document.getElementById('time').style.color = '#ffffff';
-    } else if (intervalId) {
-      clearInterval(intervalId);
-      intervalId = null;
-      updateTimer(); // Diese Zeile wurde nach oben verschoben
-      addTimeToTable(timer);
-      timer = 0;
     }
+  } else if (intervalId && event.code !== 'Escape') {
+    clearInterval(intervalId);
+    intervalId = null;
+    updateTimer();
+    addTimeToTable(timer);
+    timer = 0;
   }
 });
 
 
+
 document.getElementById('deleteLast').addEventListener('click', deleteLastTime);
-document.getElementById('deleteAll').addEventListener('click', deleteAllTimes);
+document.getElementById('deleteAll').addEventListener('click', function(event) {
+    if (confirm("Möchten Sie wirklich alle Zeiten löschen?")) {
+        deleteAllTimes();
+    } else {
+        // Die Aktion wurde vom Benutzer abgebrochen
+        console.log("Delete All abgebrochen");
+    }
+});
 
 
 console.log("Script end");

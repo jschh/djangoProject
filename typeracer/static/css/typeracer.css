@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+#testWord {
+    font-size: 24px;
+    text-align: left;
+    display: block;
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.word-count-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s;
+}
+
+.word-count-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.word-count-btn.active {
+    background: rgba(255, 255, 255, 0.3);
+    cursor: default;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.button-group button {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#words {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.word {
+    display: flex;
+    margin-right: 0.25rem; /* Adjust this value to match the width of a space */
+}
+
+.letter.correct {
+    color: #0d70ff; /* Farbe für korrekt getippte Buchstaben */
+}
+
+.letter.incorrect {
+    color: #ff0000; /* Farbe für falsch getippte Buchstaben */
+}
+
+.letter.incorrect.extra {
+    color: darkred; /* Farbe für zusätzliche falsch getippte Buchstaben */
+}
+
+.padding {
+    padding: 1rem;
+}
+
+h1 {
+    margin: 0;
+}
+
+.word {
+    position: relative; /* Damit der Cursor innerhalb dieses Elements positioniert wird */
+}
+
+
+.blur {
+    transition: filter 1s ease-in-out; /* 1s Übergang für die Unschärfe */
+    filter: blur(5px); /* 5px Unschärfe */
+}
+
+
+
+
+

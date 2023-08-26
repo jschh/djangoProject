@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Witze des Tages</title>
+    <script src="{% static 'js/alle_witze.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<table class="center glass">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Witz</th>
+            <th>Aktion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for witz in witze %}
+        <tr>
+            <td>{{ witz.id }}</td>
+            <td id="witz-{{ witz.id }}" data-witz-id="{{ witz.id }}" contenteditable="false">{{ witz.text }}</td>
+            <td>
+                <button onclick="editWitz(this.parentElement.previousElementSibling)">Bearbeiten</button>
+                <button style="display: none;" data-witz-id="{{ witz.id }}" onclick="saveWitz(this.getAttribute('data-witz-id'))">Speichern</button>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td> <!-- Empty cell for ID when adding a new Witz -->
+            <td contenteditable="true"></td>
+            <td><button onclick="addNewWitz(this)">Neuer Witz</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}
