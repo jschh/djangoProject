@@ -29,10 +29,6 @@ window.addEventListener('load', function() {
 });
 
 
-
-
-
-
 document.getElementById('togglePreview').addEventListener('click', function() {
   showPreview = !showPreview; // Toggle
   updateToggleButtonState();

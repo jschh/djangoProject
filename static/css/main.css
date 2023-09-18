@@ -51,7 +51,6 @@ html, body {
     border-radius: 25px;
     backdrop-filter: blur(5px);
     color: white;
-    background-image: linear-gradient(45deg, rgba(32,152,255,0.1), rgba(172,50,249,0.1));
     box-sizing: border-box;
     border: 0.3px solid var(--glass-border);
 
